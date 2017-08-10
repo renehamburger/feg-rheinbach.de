@@ -31,7 +31,7 @@ function sb_search_results_dictionary() {
 		'[podcasticon_for_search]' => '<img alt="Subscribe to custom podcast" title="Subscribe to custom podcast" class="podcasticon" src="<?php echo SB_PLUGIN_URL ?>/sb-includes/icons/podcast_custom.png"/>',
 		'[editlink]' => '<?php sb_edit_link($sermon->id) ?>',
 		'[creditlink]' => '<div id="poweredbysermonbrowser">Powered by <a href="http://www.sermonbrowser.com/">Sermon Browser</a></div>',
-	
+		'[series_image]' => '<?php $img = get_page_by_title($sermon->series, OBJECT, "attachment"); if ($img) { ?>    <img src="<?=$img->guid?>"/>    <?php } ?>',
     );
 }
 
@@ -73,6 +73,7 @@ function sb_sermon_page_dictionary() {
 		'[biblepassage]' => '<?php for ($i = 0; $i < count($sermon["Sermon"]->start); $i++): sb_print_bible_passage ($sermon["Sermon"]->start[$i], $sermon["Sermon"]->end[$i]); endfor ?>',
 		'[editlink]' => '<?php sb_edit_link($sermon["Sermon"]->id) ?>',
 		'[creditlink]' => '<div id="poweredbysermonbrowser">Powered by <a href="http://www.sermonbrowser.com/">Sermon Browser</a></div>',
+		'[series_image]' => '<?php $img = get_page_by_title($sermon["Sermon"]->series, OBJECT, "attachment"); if ($img) { ?>    <img src="<?=$img->guid?>"/>    <?php } ?>',
     );
 }
 

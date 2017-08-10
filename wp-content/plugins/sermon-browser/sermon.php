@@ -185,8 +185,8 @@ function sb_sermon_init () {
 	} else {
 			load_plugin_textdomain('sermon-browser', '', 'sermon-browser/sb-includes');
 	}
-	if (WPLANG != '')
-		setlocale(LC_ALL, WPLANG.'.UTF-8');
+	if (get_locale() != '')
+		setlocale(LC_ALL, get_locale().'.UTF-8');
 
 	//Display the podcast if that's what's requested
 	if (isset($_GET['podcast']))
@@ -297,9 +297,9 @@ function sb_return_kbytes($val) {
 	$last = strtolower($val[strlen($val)-1]);
 	switch($last) {
 		case 'g':
-			$val *= 1024;
+			$val = intval($val) * 1024;
 		case 'm':
-			$val *= 1024;
+			$val = intval($val) * 1024;
 	}
    return intval($val);
 }
