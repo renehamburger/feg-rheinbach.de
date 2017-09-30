@@ -246,7 +246,7 @@ function sb_sermon_init () {
 	add_action ('save_post', 'update_podcast_url');
 	
 	// Check to see what functions are required, and only load what is needed
-	if (stripos($_SERVER['REQUEST_URI'], '/wp-admin/') === FALSE) {
+	if (stripos($_SERVER['REQUEST_URI'], '/wp-admin/') === FALSE || stripos($_SERVER['REQUEST_URI'], '&action=elementor') !== FALSE) {
 		require (SB_INCLUDES_DIR.'/frontend.php');
 		add_action('wp_head', 'sb_add_headers', 0);
 		add_action('wp_head', 'wp_print_styles', 9);
