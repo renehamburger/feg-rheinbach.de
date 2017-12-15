@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) or die( 'No script!' );
 $cookies = array();
 
 function getCookies() {
@@ -44,19 +45,20 @@ function sendChurchToolsRequest($data) {
   }
 }
 
-// "id": "1", "bezeichnung": "Sonstige Veranstaltung" 
+// The following calendars (= categories) are currently available:
 // "id": "2", "bezeichnung": "Gottesdienste" 
 // "id": "3", "bezeichnung": "Junge Generation" 
 // "id": "8", "bezeichnung": "Regelm\u00e4\u00dfige Veranstaltungen"
 // "id": "11", "bezeichnung": "Schulferien NRW"
 // "id": "16", "bezeichnung": "Besondere Veranstaltungen" 
 // "id": "17", "bezeichnung": "Pfadfinder"
-function getCalenderEvents() {
+function getCalenderEvents($categories, $from = 0, $to = 21) {
+  $categories = $categories ?: [2,3,8,16];
   $data = array(
     'func' => 'getCalendarEvents', 
-    'category_ids' => [1,2,3,8,16],
-    'from' => 0,  
-    'to' => 21);
+    'category_ids' => $categories,
+    'from' => $rom,  
+    'to' => $to);
   $events = sendChurchToolsRequest($data);
   // Sort by date:
   usort($events, function($a, $b) {
