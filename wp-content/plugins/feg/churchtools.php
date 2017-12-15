@@ -57,7 +57,7 @@ function getCalenderEvents($categories, $from = 0, $to = 21) {
   $data = array(
     'func' => 'getCalendarEvents', 
     'category_ids' => $categories,
-    'from' => $rom,  
+    'from' => $from,  
     'to' => $to);
   $events = sendChurchToolsRequest($data);
   // Sort by date:
