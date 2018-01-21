@@ -84,6 +84,11 @@
 /wp-content/plugins/wp-nested-pages/
 /wp-content/plugins/wp-php-console/
 /wp-content/plugins/wp-retina-2x/
+/wp-content/plugins/add-from-server/
+/wp-content/plugins/admin-css-mu/
+/wp-content/plugins/customize-pane-resizer/
+/wp-content/plugins/enhanced-media-library/
+/wp-content/plugins/link-to-bible/
 /wp-content/themes/church-event/
 /wp-content/themes/index.php
 /wp-content/themes/oceanwp/
@@ -91,6 +96,7 @@
 /wp-content/vamtam/
 /wp-content/w3tc-config/
 /wp-content/wflogs/
+/wp-content/db.php
 /wp-cron.php
 /wp-includes/
 /wp-links-opml.php
