@@ -5,7 +5,7 @@ This file adds the shortcode [feg_events]. Here are some examples:
 - [feg_events limit="3"]: Limit output to 3
 - [feg_events calendar="8,11"]: Only get events for the calendars/categories with the IDs 8 and 11. See churchtools.php for a list of available calendars/categories.
 - [feg_events weeks="5"]: Increase the search for events to the coming 5 weeks.
-- [feg_events short="1"]: Uses short names month and day of the week.
+- [feg_events long="1"]: Uses long name for month.
 */
 defined('ABSPATH') or die('No script!'); // Prevents direct access
 include_once('churchtools.php');
@@ -14,14 +14,14 @@ add_shortcode('feg_events', 'feg_events_shortcode');
 
 function feg_events_shortcode($attributes) {
   //-- Initialisations
-  $currentLocal = setlocale(LC_TIME, 0);
-  setlocale (LC_TIME, 'de');
+  $currentLocale = setlocale(LC_TIME, 0);
+  setlocale (LC_TIME, 'de_DE.utf8', 'de_DE@euro', 'de_DE', 'de', 'ge');
   //-- Parse attributes with defaults
   $a = shortcode_atts( array(
     'limit' => 5,
     'calendar' => null,
     'weeks' => 3,
-    'short' => 0
+    'long' => 0
   ), $attributes );
   if ($a['calendar']) {
     $a['calendar'] = explode(',', $a['calendar']);
@@ -35,19 +35,19 @@ function feg_events_shortcode($attributes) {
     $startDateTime = strtotime($event->startdate);    // timestamp
     $startTime = strftime('%H:%M', $startDateTime);   // e.g. '16:00'
     $startDay = strftime('%d', $startDateTime);       // e.g. '07'
-    $startWeekday = strftime($a['short'] ? '%a' : '%A', $startDateTime); // e.g. 'Mittwoch' or 'Mi'
-    $startMonth = strftime($a['short'] ? '%b' : '%B', $startDateTime);   // e.g. 'November' or 'Nov'
+    $startWeekday = strftime('%A', $startDateTime); // e.g. 'Mittwoch'
+    $startMonth = strftime($a['long'] ? '%B' : '%b', $startDateTime);   // e.g. 'November' or 'Nov'
     $startDate = strftime('%d.%m.', $startDateTime);  // e.g. '07.11.'
     //-- End date
     $endDateTime = strtotime($event->enddate);
     $endTime = strftime('%H:%M', $endDateTime);
     $endDay = strftime('%d', $endDateTime);
-    $endMonth = strftime($a['short'] ? '%b' : '%B', $endDateTime);
+    $endMonth = strftime($a['long'] ? '%B' : '%b', $endDateTime);
     $endDate = strftime('%d.%m.', $endDateTime);
     //-- Resulting time string
     $timeString = '';
     if ($startDay === $endDay && $startMonth === $endMonth) {
-      $timeString = "$startTime &ndash; $endTime";
+      $timeString = "$startTime&ndash;$endTime";
     } else {
       $timeString = "$startDate@$startTime &ndash; $endDate@$endTime";
     }
@@ -68,6 +68,6 @@ function feg_events_shortcode($attributes) {
 HTML;
   }
   // Clean-up
-  setlocale (LC_TIME, $currentLocal);
+  setlocale (LC_TIME, $currentLocale);
   return $html;
 }
