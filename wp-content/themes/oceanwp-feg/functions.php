@@ -15,3 +15,17 @@ add_action( 'wp_enqueue_scripts', 'child_theme_configurator_css' );
 // END ENQUEUE PARENT ACTION
 
 
+/**
+ * Add the OceanWP Settings metabox in your Custom Post Type
+ */
+function feg_oceanwp_metabox( $types ) {
+  // Your custom post type
+  $types[] = 'wpfc_preacher';
+  $types[] = 'wpfc_sermon_series';
+  $types[] = 'wpfc_sermon_topics';
+  $types[] = 'wpfc_bible_book';
+  $types[] = 'wpfc_service_type';
+  return $types;
+}
+add_filter( 'ocean_main_metaboxes_post_types', 'feg_oceanwp_metabox', 20 );
+
