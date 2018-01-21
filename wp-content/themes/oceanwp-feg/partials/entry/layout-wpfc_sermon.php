@@ -62,21 +62,21 @@ if ( 'thumbnail-entry' == $style ) {
 				// Meta
 				if ( 'meta' == $element ) {
 
-					get_template_part( 'partials/entry/meta' );
+					//get_template_part( 'partials/entry/meta' );
 
 				}
 
 				// Content
 				if ( 'content' == $element ) {
 
-					get_template_part( 'partials/entry/content' );
+					get_template_part( 'partials/entry/content-wpfc_sermon' );
 
 				}
 
 				// Read more button
 				if ( 'read_more' == $element ) {
 
-					get_template_part( 'partials/entry/readmore' );
+					//get_template_part( 'partials/entry/readmore' );
 
 				}
 

@@ -21,7 +21,10 @@ if ( ! defined( 'ABSPATH' ) ) {
         <p>
             <?php
             // Display custom excerpt
-            oceanwp_excerpt( absint( get_theme_mod( 'ocean_blog_entry_excerpt_length', '30' ) ) ); ?>
+            //oceanwp_excerpt( absint( get_theme_mod( 'ocean_blog_entry_excerpt_length', '30' ) ) );
+			// Output html saved as post content on sermon creation or last update
+            echo wp_kses_post($post->post_content);
+			?>
         </p>
 
     <?php
